@@ -46,7 +46,7 @@ class DashboardController extends Controller
             $config = Configuration::query()->select('address', 'title_text', 'address_two')->first();
             $count = TrackList::query()->whereDate('to_client', Carbon::today())->count();
             return view('othercity')->with(compact('count', 'config'));
-        }elseif (Auth::user()->is_active === 1 && Auth::user()->type === 'admin'){
+        }elseif (Auth::user()->is_active === 1 && Auth::user()->type === 'admin' || Auth::user()->is_active === 1 && Auth::user()->type === 'moderator'){
             $messages = Message::all();
             $config = Configuration::query()->select('address', 'title_text', 'address_two')->first();
             $search_phrase = '';
