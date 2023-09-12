@@ -46,10 +46,6 @@ class RegisteredUserController extends Controller
             return redirect()->back()->with('error', 'Неверный номер, пожалуйста, перепроверьте');
         }
 
-        if (!Str::contains($request->code, 'sultan-alm')){
-            return redirect()->back()->with('error', 'Неверный код, пожалуйста, перепроверьте');
-        }
-
         $issetCode = User::query()->where('code', $request->code)->exists();
         if ($issetCode){
             return redirect()->back()->with('error', 'Данный код уже зарегистрирован!');
